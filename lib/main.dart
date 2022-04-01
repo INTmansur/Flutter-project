@@ -10,6 +10,7 @@ void main() {
       initialRoute: "/",
       routes: {
         "/": (context) => HomePage(),
+        "/profile": (context) => FormWidget(),
         "/child_one": (context) => ChildOne(),
         "/child_two": (context) => ChildTwo(),
       }));

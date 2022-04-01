@@ -10,7 +10,7 @@ class _HomePageState extends State<HomePage> {
   int counter = 0;
   static List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Text("Index 2: Profile"),
+    FormWidget(),
     Center(
       child: Profile(),
     ),
@@ -103,6 +103,23 @@ class Profile extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100.0),
                         ),
                         child: CircleAvatar(
+                          child: Container(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(
+                                    255, 54, 54, 54), // background
+                                onPrimary: Colors.white, // foreground
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FormWidget()),
+                                );
+                              },
+                              child: Icon(Icons.edit),
+                            ),
+                          ),
                           backgroundImage: NetworkImage(
                               "https://www.themoviedb.org/t/p/w1000_and_h563_face/oCbJbk8qKvQJx3RoEo4gE1EVKcK.jpg"),
                           radius: 15.0,
@@ -528,6 +545,148 @@ class _HomeState extends State<Home> {
         },
         child: Icon(Icons.add),
         elevation: 10.0,
+      ),
+    );
+  }
+}
+
+class FormWidget extends StatefulWidget {
+  @override
+  State<FormWidget> createState() => _FormWidgetState();
+}
+
+class _FormWidgetState extends State<FormWidget> {
+  String userName = "";
+  String firstName = "";
+  String lastName = "";
+  int PhoneNumber = 0;
+  String fatherName = "";
+  String motherName = "";
+  String dateOfBirth = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile edit"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "User Name",
+                      hintText: "Enter your Username",
+                    ),
+                    onChanged: (value) {
+                      // print(value);
+                      userName = value;
+                      print(userName);
+                    }),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "First Name",
+                      hintText: "Enter your firstname",
+                    ),
+                    onChanged: (value) {
+                      firstName = value;
+                      print(firstName);
+                    }),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Last Name",
+                      hintText: "Enter your lastname",
+                    ),
+                    onChanged: (value) {
+                      lastName = value;
+                      print(lastName);
+                    }),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Phone NUmber",
+                      hintText: "Enter your mobile numbrer",
+                    ),
+                    onChanged: (value) {
+                      PhoneNumber = int.parse(value);
+                      print(PhoneNumber);
+                    }),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Father Name",
+                      hintText: "Enter your father name",
+                    ),
+                    onChanged: (value) {
+                      fatherName = value;
+                      print(fatherName);
+                    }),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Mother Name",
+                      hintText: "Enter your mother name",
+                    ),
+                    onChanged: (value) {
+                      motherName = value;
+                      print(motherName);
+                    }),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "D.O.B",
+                      hintText: "Enter your Date of Birth",
+                    ),
+                    onChanged: (value) {
+                      dateOfBirth = value;
+                      print(dateOfBirth);
+                    }),
+              ),
+              Container(
+                margin: EdgeInsets.all(25.0),
+                child: FlatButton(
+                  padding: EdgeInsets.fromLTRB(40.0, 20, 40, 20),
+                  color: Colors.green[500],
+                  child: Text(
+                    "Save",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    print(
+                        "this is the save button we can save the data to the database");
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
